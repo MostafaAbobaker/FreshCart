@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="content- bg-light my-5 p-5" *ngIf="cartDetails.data">
+    <h1 class="fw-bold ">Cart Shop</h1>
+    <div class="d-flex justify-content-between  align-items-center ">
+      <h2>Number of Items :<span class="text-success ms-2">{{cartDetails.numOfCartItems}}</span></h2>
+      <h2>Total Price :<span class="text-success ms-2">{{cartDetails.data.totalCartPrice | currency : 'EGP '}}</span></h2>
+    </div>
+    <hr>
+    <div class="box-content">
+
+      <div class="row border-bottom py-2 mb-2 mx-0" *ngFor="let product of cartDetails.data.products | filterCart">
+        <div class="col-md-1">
+          <img [src]="product.product.imageCover" alt="" class="w-100 img-thumbnail">
+        </div>
+        <div class="col-md-11">
+          <div class="d-flex flex-wrap justify-content-between align-items-center ">
+            <div class="">
+              <h5>{{product.product.title.split(' ').splice(0,5).join(' ')}}
+                <ng-container *ngIf="product.product.title.split(' ').length > 5">...</ng-container>
+
+                <!-- <span ng-if="product.product.title.split(' ').length > 5">...</span> -->
+              </h5>
+              <h4 class="text-success ">{{product.price | currency : 'EGP '}}</h4>
+
+            </div>
+            <div class="d-flex align-items-center ">
+              <button class="btn btn-outline-success btn-sm" (click)="updateCart(product.product.id,product.count + 1)">+</button>
+              <span class="mx-2">{{product.count}}</span>
+              <button class="btn btn-outline-success btn-sm" (click)="updateCart(product.product.id,product.count - 1)">-</button>
+              <button class="btn btn-outline-danger btn-sm ms-3" (click)="removeProduct(product.product.id)">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="d-flex justify-content-end my-3">
+      <div class="d-flex">
+        <button class="btn btn-outline-danger me-3" (click)="ClearCart ()">Clear Card</button>
+        <a [routerLink]="['/checkout', cartDetails.data._id] " class="btn btn-outline-primary">Check out</a>
+      </div>
+    </div>
+  </div>
+</div>

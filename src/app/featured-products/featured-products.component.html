@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <input type="text" name="" id="" [(ngModel)]="inputSearch" class="form-control my-5" placeholder="Search Item">
+    </div>
+    <div class="col-md-2 mb-3" *ngFor="let product of allProducts | search: inputSearch">
+      <app-product-item  [product]="product"></app-product-item>
+    </div>
+
+
+  </div>
+</div>

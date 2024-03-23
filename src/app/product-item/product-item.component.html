@@ -1,0 +1,13 @@
+<div class="card p-2">
+  <a [routerLink]="['/productDetails', product._id]">
+    <div class="image"><img [src]="product.imageCover" alt="" class="w-100"></div>
+    <p class="category text-success ">{{product.category.name}}</p>
+    <h2 class="title h6" >{{product.title.split(' ').splice(0,2).join(' ') }}</h2>
+    <div class="d-flex justify-content-between mb-2">
+      <span class="price">{{product.price | concat }} </span>
+      <span class="rating"><i class="fa-solid fa-star text-warning "></i>{{product.ratingsQuantity}}</span>
+    </div>
+
+  </a>
+  <button class="btn btn-success " (click)="AddItem(product._id)"><i class="fa-solid fa-plus"></i> Add </button>
+</div>

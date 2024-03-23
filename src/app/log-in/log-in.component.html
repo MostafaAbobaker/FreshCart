@@ -1,0 +1,37 @@
+<div class="container-fluid p-5 bg-light ">
+  <div class="row justify-content-center ">
+    <div class="col-lg-5">
+      <!-- Start Form -->
+      <form class="bg-white shadow-lg rounded p-5" [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
+        <h4 class="fw-bold text-primary text-center mb-5"> Hello New User Sign Up</h4>
+        <h6 *ngIf="errApi" class="alert alert-danger">{{errApi}}</h6>
+
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" formControlName="email" placeholder="Yassen@yahoo.com">
+          <div  class="alert alert-danger p-1 px-3" *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched">
+            <span class="mb-0 form-text" *ngIf="loginForm.get('email')?.getError('required')">Email Is required</span>
+            <span class="mb-0 form-text" *ngIf="loginForm.get('email')?.getError('email')">Email Is invalid</span>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" formControlName="password" placeholder="Test123">
+          <div  class="alert alert-danger p-1 px-3" *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched">
+            <span class="mb-0 form-text" *ngIf="loginForm.get('password')?.getError('required')">Password Is required</span>
+            <span class="mb-0 form-text" *ngIf="loginForm.get('password')?.getError('pattern')">Password Is invalid</span>
+          </div>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-success  ms-auto d-block" [disabled]="loginForm.invalid" >
+          <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin-pulse"></i>
+          <span *ngIf="!isLoading" >Submit</span>
+          </button>
+      </form>
+    </div>
+  </div>
+</div>
+

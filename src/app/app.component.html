@@ -1,0 +1,10 @@
+<app-loader></app-loader>
+
+<main class="main-page" [class]="asideToggle? '' : 'full-content' ">
+  <app-navbar (showAsidebar)="ToggleAside($event)"></app-navbar>
+  <!-- <app-asidebar [stateAsideBar]="asideToggle" ></app-asidebar> -->
+  <div class="container-fluid">
+
+    <router-outlet></router-outlet>
+  </div>
+</main>
